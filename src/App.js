@@ -15,6 +15,10 @@ import CheckoutPage from "./Components/cart/Checkout";
 import PaymentPage from "./Components/cart/Payment";
 import ScrollToTop from "./Components/utils/ScrollTop";
 import CategoriesSub from "./Components/home/Category";
+import About from "./Components/home/About";
+import { Contact } from "lucide-react";
+import ContactUs from "./Components/home/Contact";
+import Shop from "./Components/home/Shop";
 
 // ✅ Utility to get JWT expiry
 function getTokenExpiry(token) {
@@ -88,25 +92,10 @@ export default function App() {
       <Header />
       <Routes>
         {/* Public Route */}
-        <Route path="/login" element={<PhoneAuth />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<ContactUs />} />
+        <Route path="/shop" element={<Shop />} />
 
-        {/* Protected Routes */}
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/subCategory/:categoryName"
-          element={<FruitsVegetablesComponent />}
-        />
-        <Route path="/subcategory" element={<CategoriesSub />} />
-        <Route path="/product/:id" element={<ProductDetailScreen />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
         {/* Default fallback */}
         <Route path="*" element={<Home />} />
       </Routes>
