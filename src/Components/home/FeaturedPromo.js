@@ -1,61 +1,56 @@
-import { useEffect, useState } from "react";
-import { fetchAds } from "../service/adsService";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import React from "react";
+import { Truck, Award, DollarSign, RefreshCw } from "lucide-react";
 
-import "swiper/css";
-import "swiper/css/navigation";
-
-const FeaturedPromo = () => {
-  const [promos, setPromos] = useState([]);
-
-  useEffect(() => {
-    const loadAds = async () => {
-      try {
-        const data = await fetchAds();
-        if (data?.success) {
-          setPromos(data.banner.advertiseBanners || []);
-        }
-      } catch (err) {
-        console.error("Error loading ads:", err);
-      }
-    };
-    loadAds();
-  }, []);
+export default function FeaturesBanner() {
+  const features = [
+    {
+      icon: Truck,
+      title: "Free Shipping",
+      description: "Above ₹ Only",
+      color: "text-green-400",
+    },
+    {
+      icon: Award,
+      title: "Certified Organic",
+      description: "100% Guarantee",
+      color: "text-green-400",
+    },
+    {
+      icon: DollarSign,
+      title: "Huge Savings",
+      description: "At Lowest Price",
+      color: "text-green-400",
+    },
+    {
+      icon: RefreshCw,
+      title: "Easy Returns",
+      description: "No Questions Asked",
+      color: "text-green-400",
+    },
+  ];
 
   return (
-    <section>
-      <div className="mx-4 relative pb-2 pt-4">
-        <Swiper
-          modules={[Autoplay, Navigation]}
-          spaceBetween={12}
-          slidesPerView={1} // default mobile
-          breakpoints={{
-            640: { slidesPerView: 3 }, // show 2 slides on screens >= 640px
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          navigation
-          loop={true}
-        >
-          {promos?.map((promo, i) => (
-            <SwiperSlide
-              key={i}
-              className="rounded-lg cursor-pointer max-h-[280px] sm:h-[200px] overflow-hidden"
+    <div className="bg-black py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-zinc-800 rounded-lg p-6 flex items-start gap-4 hover:bg-zinc-700 transition-colors"
             >
-              <img
-                src={promo}
-                alt={`Ad-${i}`}
-                className="h-full w-full object-cover"
+              <feature.icon
+                className={`w-8 h-8 ${feature.color} flex-shrink-0`}
               />
-            </SwiperSlide>
+              <div>
+                <h3 className="text-white font-semibold text-lg mb-1">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 text-sm">{feature.description}</p>
+              </div>
+            </div>
           ))}
-        </Swiper>
+        </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default FeaturedPromo;
+}

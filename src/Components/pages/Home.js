@@ -3,11 +3,8 @@ import HeroArea from "../home/HeroArea";
 import FeaturedPromo from "../home/FeaturedPromo";
 import CategoriesList from "../home/CategoriesList";
 import DiscountOffers from "../home/DiscountOffers";
-import ProductsRow from "../home/ProductsRow";
-import ProductCard from "../home/ProductCard";
-import ProductCard3 from "../home/ProductCard3";
-import ChocolatePage from "../home/ChoclatePage";
-import Mithai from "../home/Mithai";
+import CustomerReviews from "../home/Testimononial";
+
 const Home = () => {
   const productItems = Misc.filter((item) => item.type === 77).map((el) => ({
     data: el.data,
@@ -15,11 +12,12 @@ const Home = () => {
   }));
 
   return (
-    <div className="_container">
+    <div className="">
       <HeroArea />
       <FeaturedPromo />
       <CategoriesList />
       <DiscountOffers />
+      <CustomerReviews />
       {/* <ProductCard />
       <ProductCard3 /> */}
       {/* <ChocolatePage />
